@@ -42,7 +42,6 @@ jobs:
       - name: list
         run: |
           cd ./llprechner-frontend
-          ls
           cd ./docker/node
           ls
       - name: Install cosign
