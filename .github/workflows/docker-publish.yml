@@ -43,7 +43,7 @@ jobs:
         run: |
           cd ./llprechner-frontend
           ls
-          cd ./src/docker/node
+          cd ./docker/node
           ls
       - name: Install cosign
         if: github.event_name != 'pull_request'
