@@ -41,7 +41,7 @@ jobs:
       # https://github.com/sigstore/cosign-installer
       - name: list
         run: |
-          cd ./llprechner-frontend
+          cd ./llprechner-api
           cd ./docker/node
           ls
       - name: Install cosign
