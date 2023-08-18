@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+    node:
+        build:
+            target: development
+        container_name: llprechner-backend-development
+        entrypoint: dockerize npm run start:dev
+        ports:
+            - ${PORT}:${PORT}
+        volumes:
+            - ./llprechner-api/src:/home/node/app/src
+    angular:
+        container_name: llprechner-frontend-development
+        build:
+            context: llprechner-frontend
+            target: development
+        ports:
+            - ${ANGULAR_PORT}:4200
+        depends_on:
+            - node
+        volumes:
+            - ./llprechner-frontend/src:/home/node/app/src

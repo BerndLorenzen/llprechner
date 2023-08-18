@@ -1,0 +1,15 @@
+{
+  "name": "llprechner",
+  "version": "1.0.0",
+  "description": "Eine Anwendung um die Dimensionierung einer Luft-Luft Wärmepumpe zu berechnen",
+  "main": "\"\"",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+      "docker:start:test": "docker compose -f docker-compose.test.yml up --build",
+      "docker:start:prod": "ANGULAR_PORT=4200 PORT=9000 NODE_ENV=production DOTENV_KEY=dotenv://:key_f4ded89c11aedf5dcac6acb9b406714b1425adbad1b34395e85bd278be4d75c6@dotenv.org/vault/.env.vault?environment=production docker compose -p llprechner-production -f docker-compose.yml -f docker-compose.prod.yml up -d --build",
+      "docker:start:dev": "ANGULAR_PORT=5200 PORT=8010 NODE_ENV=development DOTENV_KEY=dotenv://:key_68b8a6a6103cfac918d7ae085ba26fc019fc0f065eeb51916d1cade2518a60ff@dotenv.org/vault/.env.vault?environment=development docker compose -p llprechner-dev -f docker-compose.yml -f docker-compose.dev.yml up --build -d",
+      "docker:start:staging": "ANGULAR_PORT=6200 PORT=8020 NODE_ENV=staging DOTENV_KEY=ddotenv://:key_2e7b68d07c9c9582ab6f5874d92ee11166f922bdfa1be6cdb2e52a8e8043a6fa@dotenv.org/vault/.env.vault?environment=staging docker compose -p llprechner-staging -f docker-compose.yml -f docker-compose.staging.yml up -d --build"
+  },
+  "author": "Bernd Lorenzen",
+  "license": "ISC"
+}

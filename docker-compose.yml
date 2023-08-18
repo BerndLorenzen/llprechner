@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+    node:
+        build:
+            context: llprechner-api
+            dockerfile: ./docker/node/Dockerfile
+        image: freakykeyboard/llprechner-backend:latest
+        environment:
+            - NODE_ENV=${NODE_ENV}
+            - DOTENV_KEY=${DOTENV_KEY}
+        ports:
+            - ${PORT}:${PORT}
+        expose:
+            - ${PORT}
+        tty: true
+        volumes:
+            - /home/node/node_modules
+            - .env.vault:/home/node/app/.env.vault
+
+    angular:
+        build:
+            context: llprechner-frontend
+            dockerfile: ./Dockerfile
+        image: freakykeyboard/llprechner-frontend:latest
+        environment:
+            - NODE_ENV=${NODE_ENV}
+            - DOTENV_KEY=${DOTENV_KEY}
+        expose:
+            - 4200
+        tty: true
+        volumes:
+            - .env.vault:/home/node/app/.env.vault

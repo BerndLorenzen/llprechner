@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+    node:
+        build:
+            target: final
+        container_name: llprechner-backend-staging
+        entrypoint: dockerize node ./dist/server.js
+        deploy:
+            restart_policy:
+                condition: on-failure
+                max_attempts: 10
+    angular:
+        build:
+            target: development
+        container_name: llprechner-frontend-staging
+        depends_on:
+            - node
+        ports:
+            - ${ANGULAR_PORT}:4200
+        deploy:
+            restart_policy:
+                condition: on-failure
+                max_attempts: 10
+
+
